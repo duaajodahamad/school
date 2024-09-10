@@ -1,7 +1,7 @@
  
-<app-login  ></app-login>
+<app-login *ngIf="!loginparams.islogin" [showLogin]="loginparams" ></app-login>
 
-<div *ngIf="islogin" >
+<div *ngIf="loginparams.islogin" >
 
   <style>
     :host {

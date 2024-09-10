@@ -27,6 +27,8 @@ export class AppComponent {
   messageToChild: string = 'Hey from parent ';
   btnText: string = 'Add Student';
 
+  loginparams = { islogin:false };
+
  StudentList =[
   { id: 1, name: 'John',  email: 'test1@gmail.com'  },
   { id: 2, name: 'Jane', email: 'test2@gmail.com' },
