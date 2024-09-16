@@ -25,11 +25,12 @@ export class LoginComponent {
     alert("login");
 
     this.showLogin.islogin = !this.showLogin.islogin;
+ 
     //this.appComponent.islogin = !this.appComponent.islogin;
   }
 
   onSummit(){
- 
+    localStorage.setItem("islogin","true");
     this.showLogin.islogin = !this.showLogin.islogin;
   }
 

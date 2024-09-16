@@ -19,8 +19,12 @@ import { CommonModule } from '@angular/common';
   templateUrl: './mainpage.component.html',
   styleUrl: './mainpage.component.css',
 })
+
 export class MainpageComponent {
+ 
+ 
   title = 'school';
+  
   islogin: boolean = false;
   showAddForm: boolean = false;
   messageToChild: string = 'Hey from parent ';
@@ -35,6 +39,18 @@ export class MainpageComponent {
     { id: 4, name: 'Jack', email: 'test4@gmail.com' },
     { id: 5, name: 'Jill', email: 'test5@gmail.com' },
   ];
+
+  constructor(){
+    let islogin= localStorage.getItem("islogin");
+    if(islogin==null)
+    {
+      localStorage.setItem("islogin","false");
+    } else if(islogin == "true")
+    {
+      this.loginparams.islogin = true;
+    }
+  }
+
 
   showAdd() {
     ///false !false => true
