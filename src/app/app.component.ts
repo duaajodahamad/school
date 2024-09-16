@@ -21,35 +21,7 @@ import { LoginComponent } from "./login/login.component";
   styleUrl: './app.component.css',
 })
 export class AppComponent {
-  title = 'school';
-  islogin:boolean = false; 
-  showAddForm: boolean = false;
-  messageToChild: string = 'Hey from parent ';
-  btnText: string = 'Add Student';
 
-  loginparams = { islogin:false };
-
- StudentList =[
-  { id: 1, name: 'John',  email: 'test1@gmail.com'  },
-  { id: 2, name: 'Jane', email: 'test2@gmail.com' },
-  { id: 3, name: 'Jim', email: 'test3@gmail.com' },
-  { id: 4, name: 'Jack', email: 'test4@gmail.com' },
-  { id: 5, name: 'Jill', email: 'test5@gmail.com' },
-];
-
-  showAdd() {
-    ///false !false => true
-    //true !true => false
-    //fals !false => true
-    // this.showAddForm = !this.showAddForm;
-
-    this.showAddForm = !this.showAddForm;
-    if (this.showAddForm) {
-      this.btnText = 'Hide Form';
-    } else {
-      this.btnText = 'Add Student';
-    }
-  }
  
 
 }
