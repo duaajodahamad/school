@@ -1,7 +1,7 @@
 
 <form (ngSubmit)="Onsubmit()" class="student-form">
     <div class="form-group">
-      <label for="stId">Student Id</label>
+      <label for="stId">course Id</label>
       <input
         type="number"
         [(ngModel)]="courseForm.id"
@@ -12,7 +12,7 @@
       />
     </div>
     <div class="form-group">
-      <label for="name">Name</label>
+      <label for="name">course Name</label>
       <input
         type="text"
         [(ngModel)]="courseForm.name"
@@ -22,36 +22,25 @@
         required
       />
     </div>
+
     <div class="form-group">
-      <label for="email">Email</label>
+      <label for="name">description   </label>
       <input
-        type="email"
+        type="text"
         [(ngModel)]="courseForm.description"
         class="form-control"
-        id="email"
-        name="email"
+        id="description"
+        name="description"
         required
       />
     </div>
+  
     <button type="submit" class="btn btn-primary submit-btn">Submit</button>
   </form>
    
  
  
-<div>
-  <div class="form-group">
-    <label for="stId">Student Id</label>
-    {{ courseForm.id }}
-  </div>
-  <div class="form-group">
-    <label for="name">Name</label>
-    {{ courseForm.name }}
-  </div>
-  <div class="form-group">
-    <label for="email">Email</label>
-    {{ courseForm.description }}
-  </div>
-</div>
+ 
 
 
 <div>
