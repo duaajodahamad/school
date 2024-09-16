@@ -1,0 +1,63 @@
+.add-hide-btn {
+    background-color: #007bff; /* Primary blue */
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    margin-top: 10px; /* Some margin from the top */
+  }
+  
+  .add-hide-btn:hover {
+    background-color: #0056b3; /* Darker blue on hover */
+    transform: scale(1.05); /* Slightly enlarge the button on hover */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2); /* Stronger shadow on hover */
+  }
+  
+  .add-hide-btn:active {
+    transform: scale(0.95); /* Button shrinks when clicked */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Lighter shadow on click */
+  }
+  
+  .add-hide-btn:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.5); /* Focus outline */
+  }
+  
+  .center-container {
+    display: flex;
+    justify-content: center; /* Centers the button horizontally */
+    align-items: center; /* Centers the button vertically */
+    width: 100%; /* Takes the full width */
+    flex-direction: column; /* If you want content to be stacked */
+  }
+
+  /* Existing styles remain unchanged */
+
+.content {
+    display: flex;
+    justify-content: space-between; /* Distribute space evenly */
+    align-items: flex-start;        /* Align items to the top */
+    width: 100%;
+    max-width: 1200px;              /* Increase max-width for wider layout */
+    margin: 0 auto;                 /* Center the content */
+    padding: 1rem;
+    height: 50vh;
+  }
+  
+  .left-side,
+  .right-side {
+    flex: 1;                        /* Make both sides take equal width */
+    margin: 0 1rem;                 /* Add horizontal margin */
+  }
+  
+  .divider {
+    width: 1px;
+    background: var(--red-to-pink-to-purple-vertical-gradient);
+    margin: 0 1rem;                 /* Adjust margin for spacing */
+  }
+  
+  

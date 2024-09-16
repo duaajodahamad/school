@@ -1,26 +1,24 @@
- <h1> {{title}} </h1>
+<h1 class="table-title">{{title}}</h1>
 
-
-    <table class="table table-striped">
-    <thead>
-        <tr>
-        <th>Id</th>
-        <th>Name</th>
-        <th>Email</th>
-        <th></th>
-        </tr>
-        </thead>    
-    <tbody>
-         
-        <tr *ngFor="let student of students" >
-            <td>{{student.id}}</td>
-            <td>{{student.name}}</td>
-            <td>{{student.email}}</td>
-            <td></td>
-        </tr>
-        
-    </tbody>
-    </table>
+<table class="table table-striped student-table">
+  <thead>
+    <tr>
+      <th>Id</th>
+      <th>Name</th>
+      <th>Email</th>
+      <th></th>
+    </tr>
+  </thead>    
+  <tbody>
+    <tr *ngFor="let student of students" class="table-row">
+      <td>{{student.stId}}</td>
+      <td>{{student.Name}}</td>
+      <td>{{student.email}}</td>
+      <td>{{student.phone}}</td>
+    </tr>
+  </tbody>
+  banana
+</table>
 
 
 
