@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, Input, OnInit } from '@angular/core';
 import { StudnetModel } from '../../Models/student.modle';
+import { StudentdataService } from '../../services/studentdata.service';
 
 @Component({
   selector: 'app-student-list',
@@ -12,24 +13,24 @@ import { StudnetModel } from '../../Models/student.modle';
 export class StudentListComponent implements OnInit {
   title: string = 'Student List 1';
 
+  @Input() students: StudnetModel[] = [];
+  // @Input()  students: StudnetModel[]   =     [
+  //   { stId: 1, Name: 'John', email: 'test1@gmail.com', phone: '1234567890' },
+  //   { stId: 2, Name: 'Jane', email: 'test2@gmail.com', phone: '1234567890' },
+  //   { stId: 3, Name: 'Jim', email: 'test3@gmail.com', phone: '1234567890' },
+  //   { stId: 4, Name: 'Jack', email: 'test4@gmail.com' , phone: '1234567890'},
+  //   { stId: 5, Name: 'Jill', email: 'test5@gmail.com', phone: '1234567890' },
+  // ];
 
-
-@Input()  students: Student[]   =     [
-  { id: 1, name: 'John', email: 'test1@gmail.com' },
-  { id: 2, name: 'Jane', email: 'test2@gmail.com' },
-  { id: 3, name: 'Jim', email: 'test3@gmail.com' },
-  { id: 4, name: 'Jack', email: 'test4@gmail.com' },
-  { id: 5, name: 'Jill', email: 'test5@gmail.com' },
-];
-
-
-  constructor() {}
+  constructor(public studentservice: StudentdataService) {}
   ngOnInit() {
-    const storedStudents = localStorage.getItem('students');
-    this.students = storedStudents ? JSON.parse(storedStudents) : [];
-    console.log('Loaded students:', this.students);
-
+    this.studentservice.students.subscribe((c) => {
+       
+      this.students = c;
+    });
+    // this.students = this.studentservice.students;
+    // const storedStudents = localStorage.getItem('students');
+    // this.students = storedStudents ? JSON.parse(storedStudents) : [];
+    // console.log('Loaded students:', this.students);
   }
-  
 }
-

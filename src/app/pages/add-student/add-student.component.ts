@@ -3,6 +3,7 @@ import { StudnetModel } from '../../Models/student.modle';
 import { FormsModule } from '@angular/forms';
 import { JsonPipe } from '@angular/common';
 import { Router } from '@angular/router';
+import { StudentdataService } from '../../services/studentdata.service';
 
 @Component({
   selector: 'app-add-student',
@@ -12,17 +13,7 @@ import { Router } from '@angular/router';
   styleUrl: './add-student.component.css',
 })
 export class AddStudentComponent {
-  @Output() studentAdded = new EventEmitter<StudnetModel>();
-  
-studentForm : StudnetModel  = {
-  email:"",
-  Name:"",
-  stId:0,
-  phone:""
-} ;
-
- 
-  constructor(private router:Router) {}
+  // @Output() studentAdded = new EventEmitter<StudnetModel>();
 
   studentForm: StudnetModel = {
     email: '',
@@ -31,20 +22,20 @@ studentForm : StudnetModel  = {
     phone: '',
   };
 
+  constructor(
+    private router: Router,
+    public studentService: StudentdataService
+  ) {}
+
   Onsubmit() {
-      const storedStudents = localStorage.getItem('students');
-  let students: StudnetModel[] = storedStudents ? JSON.parse(storedStudents) : [];
+    //     const storedStudents = localStorage.getItem('students');
+    // let students: StudnetModel[] = storedStudents ? JSON.parse(storedStudents) : [];
 
-  students.push(this.studentForm);
-  localStorage.setItem('students', JSON.stringify(students));
+    // students.push(this.studentForm);
+    // localStorage.setItem('students', JSON.stringify(students));
 
-  this.studentAdded.emit(this.studentForm);
-
-  this.studentForm = { email: "", Name: "", stId: 0, phone: "" };
-    this.router.navigate(['studentlist']); 
+    this.studentService.update(this.studentForm);
+    this.router.navigate(['studentlist']);
     //redirect to the student list
   }
- 
-}
-
 }
