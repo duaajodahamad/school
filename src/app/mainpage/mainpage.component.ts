@@ -65,4 +65,10 @@ export class MainpageComponent {
       this.btnText = 'Add Student';
     }
   }
+
+  logout(){
+    localStorage.removeItem("islogin");
+    this.loginparams.islogin = false;
+  }
+
 }
