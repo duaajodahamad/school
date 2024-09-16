@@ -1,3 +1,4 @@
+
 <form (ngSubmit)="Onsubmit()" class="student-form">
     <div class="form-group">
       <label for="stId">Student Id</label>
@@ -45,3 +46,76 @@
     <button type="submit" class="btn btn-primary submit-btn">Submit</button>
   </form>
   
+=======
+<form (ngSubmit)="Onsubmit()">
+  <div class="form-group">
+    <label for="stId">Student Id</label>
+    <input
+      type="text"
+      [(ngModel)]="studentForm.stId"
+      class="form-control"
+      id="stId"
+      name="stId"
+      required
+    />
+  </div>
+  <div class="form-group">
+    <label for="name">Name</label>
+    <input
+      type="text"
+      [(ngModel)]="studentForm.Name"
+      class="form-control"
+      id="name"
+      name="name"
+      required
+    />
+  </div>
+  <div class="form-group">
+    <label for="email">Email</label>
+    <input
+      type="email"
+      [(ngModel)]="studentForm.email"
+      class="form-control"
+      id="email"
+      name="email"
+      required
+    />
+  </div>
+  <div class="form-group">
+    <label for="phone">Phone</label>
+    <input
+      type="text"
+      [(ngModel)]="studentForm.phone"
+      class="form-control"
+      id="phone"
+      name="phone"
+    />
+  </div>
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+
+<div>
+  <div class="form-group">
+    <label for="stId">Student Id</label>
+    {{ studentForm.stId }}
+  </div>
+  <div class="form-group">
+    <label for="name">Name</label>
+    {{ studentForm.Name }}
+  </div>
+  <div class="form-group">
+    <label for="email">Email</label>
+    {{ studentForm.email }}
+  </div>
+  <div class="form-group">
+    <label for="phone">Phone</label>
+    {{ studentForm.phone }}
+  </div>
+</div>
+
+
+<div>
+    {{studentForm | json}} 
+     <!-- convert the object type from the right side to the type in the left side  -->
+</div>
+
