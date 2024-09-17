@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnChanges, OnDestroy, OnInit, SimpleChanges } from '@angular/core';
 import { StudnetModel } from '../../../Models/student.modle';
 import { StudentdataService } from '../../../services/studentdata.service';
 import { Router } from '@angular/router';
@@ -11,18 +11,21 @@ import { Router } from '@angular/router';
   templateUrl: './student-list.component.html',
   styleUrls: ['./student-list.component.css'],
 })
-export class StudentListComponent implements OnInit {
+export class StudentListComponent implements OnInit,OnChanges,OnDestroy {
   title: string = 'Student List';
-
+  sudentSoucrReference:any;
   @Input() students: StudnetModel[] = [];
 
   constructor(
     public studentservice: StudentdataService,
     private router: Router
   ) {}
+  ngOnDestroy(): void {
+    this.sudentSoucrReference.unsubscribe();
+  }
 
   ngOnInit() {
-    this.studentservice.students.subscribe((c) => {
+    this.sudentSoucrReference= this.studentservice.students.subscribe((c) => {
       this.students = c;
     });
   }
@@ -37,5 +40,9 @@ export class StudentListComponent implements OnInit {
 
   deleteStudent(id: number) {
     this.studentservice.deleteStudent(id);
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    alert("hh");
   }
 }

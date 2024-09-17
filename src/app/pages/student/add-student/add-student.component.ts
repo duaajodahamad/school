@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { JsonPipe } from '@angular/common';
@@ -12,7 +12,7 @@ import { StudentdataService } from '../../../services/studentdata.service';
   templateUrl: './add-student.component.html',
   styleUrls: ['./add-student.component.css'],
 })
-export class AddStudentComponent implements OnInit {
+export class AddStudentComponent implements OnInit    {
   studentForm: StudnetModel = {
     email: '',
     Name: '',
@@ -26,7 +26,8 @@ export class AddStudentComponent implements OnInit {
     private route: ActivatedRoute,
     public studentService: StudentdataService
   ) {}
-
+ 
+ 
   ngOnInit(): void {
     this.route.paramMap.subscribe((params) => {
       const id = params.get('id');
