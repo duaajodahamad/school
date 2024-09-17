@@ -1,0 +1,10 @@
+<div class="teacher-details" *ngIf="course; else notFound">
+  <h2>Teacher Details</h2>
+  <p><strong>ID:</strong> {{ course.id }}</p>
+  <p><strong>Name:</strong> {{ course.name }}</p>
+  <p><strong>Description:</strong> {{ course.description }}</p>
+</div>
+
+<ng-template #notFound>
+  <p>course not found!</p>
+</ng-template>

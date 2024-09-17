@@ -1,7 +1,8 @@
 import { CommonModule } from '@angular/common';
 import { Component, Input, OnInit } from '@angular/core';
-import { StudnetModel } from '../../Models/student.modle';
-import { StudentdataService } from '../../services/studentdata.service';
+import { StudnetModel } from '../../../Models/student.modle';
+import { StudentdataService } from '../../../services/studentdata.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-student-list',
@@ -22,15 +23,28 @@ export class StudentListComponent implements OnInit {
   //   { stId: 5, Name: 'Jill', email: 'test5@gmail.com', phone: '1234567890' },
   // ];
 
-  constructor(public studentservice: StudentdataService) {}
+  constructor(
+    public studentservice: StudentdataService,
+    private router: Router
+  ) {}
   ngOnInit() {
     this.studentservice.students.subscribe((c) => {
-       
       this.students = c;
     });
     // this.students = this.studentservice.students;
     // const storedStudents = localStorage.getItem('students');
     // this.students = storedStudents ? JSON.parse(storedStudents) : [];
     // console.log('Loaded students:', this.students);
+  }
+
+  navigateTo(route: string, id?: number) {
+    if (id !== undefined) {
+      this.router.navigate([`/${route}`, id]);
+    } else {
+      this.router.navigate([`/${route}`]);
+    }
+  }
+  deleteStudent(id: number) {
+    this.studentservice.deleteTeacher(id);
   }
 }

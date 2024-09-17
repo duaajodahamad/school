@@ -1,5 +1,5 @@
 <h1 class="table-title">{{ title }}</h1>
-<button (click)="navigateTo('add-course')" class="nav-btn">Add course</button>
+<button (click)="navigateTo('add-student')" class="nav-btn">Add student</button>
 <button (click)="navigateTo('')" class="nav-btn">Home</button>
 <table class="table table-striped student-table">
   <thead>
@@ -7,14 +7,16 @@
       <th>Id</th>
       <th>Name</th>
       <th>Email</th>
-      <th>Action</th>
+      <th>Phone</th>
+      <th>Actions</th>
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let course of courses" class="table-row">
-      <td>{{ course.id }}</td>
-      <td>{{ course.name }}</td>
-      <td>{{ course.description }}</td>
+    <tr *ngFor="let student of students" class="table-row">
+      <td>{{ student.stId }}</td>
+      <td>{{ student.Name }}</td>
+      <td>{{ student.email }}</td>
+      <td>{{ student.phone }}</td>
       <td>
         <!--<button
           (click)="navigateTo('edit-teacher', teacher.id)"
@@ -22,11 +24,11 @@
         >
           Edit
         </button>-->
-        <button (click)="deleteCourse(course.id)" class="action-btn delete">
+        <button (click)="deleteStudent(student.stId)" class="action-btn delete">
           Delete
         </button>
         <button
-          (click)="navigateTo('course', course.id)"
+          (click)="navigateTo('student', student.stId)"
           class="action-btn view"
         >
           View

@@ -1,10 +1,8 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
-import { AddStudentComponent } from './pages/add-student/add-student.component';
-import { StudentListComponent } from './pages/student-list/student-list.component';
-import { ChildComComponent } from './pages/child-com/child-com.component';
-import { LoginComponent } from "./login/login.component";
+import { StudentListComponent } from './pages/student/student-list/student-list.component';
+import { MainpageComponent } from './mainpage/mainpage.component';
 
 @Component({
   selector: 'app-root',
@@ -13,15 +11,9 @@ import { LoginComponent } from "./login/login.component";
     CommonModule,
     RouterOutlet,
     StudentListComponent,
-    AddStudentComponent,
-    ChildComComponent,
-    LoginComponent
-],
+    MainpageComponent,
+  ],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.css',
+  styleUrls: ['./app.component.css'],
 })
-export class AppComponent {
-
- 
-
-}
+export class AppComponent {}

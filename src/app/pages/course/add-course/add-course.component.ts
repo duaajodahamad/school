@@ -10,14 +10,13 @@ import { FormsModule } from '@angular/forms';
   standalone: true,
   imports: [FormsModule, JsonPipe],
   templateUrl: './add-course.component.html',
-  styleUrl: './add-course.component.css'
+  styleUrl: './add-course.component.css',
 })
 export class AddCourseComponent {
-
   courseForm: CourseModel = {
     id: 0,
     name: '',
-    description: ''
+    description: '',
   };
 
   constructor(
@@ -28,5 +27,8 @@ export class AddCourseComponent {
   Onsubmit() {
     this.courseDataService.update(this.courseForm);
     this.router.navigate(['courseList']);
+  }
+  navigateTo(route: string) {
+    this.router.navigate([`/${route}`]);
   }
 }

@@ -1,9 +1,9 @@
 import { Component, EventEmitter, Output } from '@angular/core';
-import { StudnetModel } from '../../Models/student.modle';
 import { FormsModule } from '@angular/forms';
 import { JsonPipe } from '@angular/common';
 import { Router } from '@angular/router';
-import { StudentdataService } from '../../services/studentdata.service';
+import { StudnetModel } from '../../../Models/student.modle';
+import { StudentdataService } from '../../../services/studentdata.service';
 
 @Component({
   selector: 'app-add-student',
@@ -37,5 +37,8 @@ export class AddStudentComponent {
     this.studentService.update(this.studentForm);
     this.router.navigate(['studentlist']);
     //redirect to the student list
+  }
+  navigateTo(route: string) {
+    this.router.navigate([`/${route}`]);
   }
 }

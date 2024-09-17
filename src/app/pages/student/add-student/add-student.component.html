@@ -1,11 +1,11 @@
-<button (click)="navigateTo('studentlist')" class="nav-btn">Back</button>
+<button (click)="navigateTo('courseList')" class="nav-btn">Back</button>
 
 <form (ngSubmit)="Onsubmit()" class="student-form">
   <div class="form-group">
     <label for="stId">Student Id</label>
     <input
       type="number"
-      [(ngModel)]="courseForm.id"
+      [(ngModel)]="studentForm.stId"
       class="form-control"
       id="stId"
       name="stId"
@@ -16,7 +16,7 @@
     <label for="name">Name</label>
     <input
       type="text"
-      [(ngModel)]="courseForm.name"
+      [(ngModel)]="studentForm.Name"
       class="form-control"
       id="name"
       name="name"
@@ -27,11 +27,21 @@
     <label for="email">Email</label>
     <input
       type="email"
-      [(ngModel)]="courseForm.description"
+      [(ngModel)]="studentForm.email"
       class="form-control"
       id="email"
       name="email"
       required
+    />
+  </div>
+  <div class="form-group">
+    <label for="phone">Phone</label>
+    <input
+      type="text"
+      [(ngModel)]="studentForm.phone"
+      class="form-control"
+      id="phone"
+      name="phone"
     />
   </div>
   <button type="submit" class="btn btn-primary submit-btn">Submit</button>
@@ -40,18 +50,23 @@
 <div>
   <div class="form-group">
     <label for="stId">Student Id</label>
-    {{ courseForm.id }}
+    {{ studentForm.stId }}
   </div>
   <div class="form-group">
     <label for="name">Name</label>
-    {{ courseForm.name }}
+    {{ studentForm.Name }}
   </div>
   <div class="form-group">
     <label for="email">Email</label>
-    {{ courseForm.description }}
+    {{ studentForm.email }}
+  </div>
+  <div class="form-group">
+    <label for="phone">Phone</label>
+    {{ studentForm.phone }}
   </div>
 </div>
 
 <div>
-  {{ courseForm | json }}
+  {{ studentForm | json }}
+  <!-- convert the object type from the right side to the type in the left side  -->
 </div>
