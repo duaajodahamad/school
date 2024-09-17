@@ -27,10 +27,19 @@ export class StudentdataService {
     this.students.next(this.sourceStudentModel);
   }
 
-  deleteTeacher(id: number) {
+  deleteStudent(id: number) {
     this.sourceStudentModel = this.sourceStudentModel.filter(
       (student) => student.stId !== id
     );
     this.students.next(this.sourceStudentModel);
+  }
+  updateStudent(student: StudnetModel) {
+    const index = this.sourceStudentModel.findIndex(
+      (s) => s.stId === student.stId
+    );
+    if (index !== -1) {
+      this.sourceStudentModel[index] = student;
+      this.students.next(this.sourceStudentModel);
+    }
   }
 }

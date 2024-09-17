@@ -18,12 +18,12 @@
       <td>{{ student.email }}</td>
       <td>{{ student.phone }}</td>
       <td>
-        <!--<button
-          (click)="navigateTo('edit-teacher', teacher.id)"
+        <button
+          (click)="navigateTo('edit-student', student.stId)"
           class="action-btn"
         >
           Edit
-        </button>-->
+        </button>
         <button (click)="deleteStudent(student.stId)" class="action-btn delete">
           Delete
         </button>

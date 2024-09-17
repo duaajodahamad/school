@@ -16,12 +16,12 @@
       <td>{{ course.name }}</td>
       <td>{{ course.description }}</td>
       <td>
-        <!--<button
-          (click)="navigateTo('edit-teacher', teacher.id)"
+        <button
+          (click)="navigateTo('edit-course', course.id)"
           class="action-btn"
         >
           Edit
-        </button>-->
+        </button>
         <button (click)="deleteCourse(course.id)" class="action-btn delete">
           Delete
         </button>

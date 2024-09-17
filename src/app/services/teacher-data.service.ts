@@ -30,4 +30,14 @@ export class TeacherDataServiceService {
     );
     this.teachers.next(this.sourceTeacherModel);
   }
+  updateTeacher(teacher: TeacherModel) {
+    const index = this.sourceTeacherModel.findIndex((t) => t.id === teacher.id);
+    if (index !== -1) {
+      this.sourceTeacherModel[index] = teacher;
+      this.teachers.next(this.sourceTeacherModel);
+    }
+  }
+  getTeacherById(id: number) {
+    return this.sourceTeacherModel.find((t) => t.id === id);
+  }
 }

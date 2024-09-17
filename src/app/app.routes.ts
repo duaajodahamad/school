@@ -36,19 +36,26 @@ export const routes: Routes = [
     component: AddStudentComponent,
   },
   {
+    path: 'edit-student/:id',
+    component: AddStudentComponent,
+  },
+  {
     path: 'teacherList',
     component: TeacherListComponent,
   },
-  {
-    path: 'add-teacher',
-    component: AddTeacherComponent,
-  },
+  { path: 'add-teacher', component: AddTeacherComponent },
+  { path: 'edit-teacher/:id', component: AddTeacherComponent },
+
   {
     path: 'courseList',
     component: CourseComponent,
   },
   {
     path: 'add-course',
+    component: AddCourseComponent,
+  },
+  {
+    path: 'edit-course/:id',
     component: AddCourseComponent,
   },
 ];

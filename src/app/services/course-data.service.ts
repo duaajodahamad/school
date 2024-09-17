@@ -33,4 +33,11 @@ export class CourseDataService {
     );
     this.courses.next(this.sourceCourseModel);
   }
+  updateCourse(course: CourseModel) {
+    const index = this.sourceCourseModel.findIndex((c) => c.id === course.id);
+    if (index !== -1) {
+      this.sourceCourseModel[index] = course;
+      this.courses.next(this.sourceCourseModel);
+    }
+  }
 }

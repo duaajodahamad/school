@@ -9,16 +9,17 @@ import { Router } from '@angular/router';
   standalone: true,
   imports: [CommonModule],
   templateUrl: './teachers.component.html',
-  styleUrl: './teachers.component.css',
+  styleUrls: ['./teachers.component.css'],
 })
 export class TeacherListComponent {
-  title: string = 'Course List';
+  title: string = 'Teacher List';
   @Input() teachers: TeacherModel[] = [];
 
   constructor(
     public teacherDataServiceService: TeacherDataServiceService,
     private router: Router
   ) {}
+
   ngOnInit() {
     this.teacherDataServiceService.teachers.subscribe((c) => {
       this.teachers = c;
@@ -32,6 +33,7 @@ export class TeacherListComponent {
       this.router.navigate([`/${route}`]);
     }
   }
+
   deleteTeacher(id: number) {
     this.teacherDataServiceService.deleteTeacher(id);
   }
