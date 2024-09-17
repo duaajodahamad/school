@@ -1,6 +1,8 @@
   
 <app-login *ngIf="!loginparams.islogin" [showLogin]="loginparams" ></app-login>
-
+<!-- <div>
+  <app-teacher-list></app-teacher-list>
+</div> -->
 <div *ngIf="loginparams.islogin" >
 
   <button (click)="logout()" >Logout </button>

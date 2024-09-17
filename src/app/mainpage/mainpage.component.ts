@@ -5,6 +5,7 @@ import { ChildComComponent } from '../pages/child-com/child-com.component';
 import { LoginComponent } from '../login/login.component';
 import { CommonModule } from '@angular/common';
 import { StudnetModel } from '../Models/student.modle';
+import { TeacherListComponent } from '../pages/teacher-list/teacher-list.component';
 
 @Component({
   selector: 'app-mainpage',
@@ -15,6 +16,7 @@ import { StudnetModel } from '../Models/student.modle';
     ChildComComponent,
     CommonModule,
     LoginComponent,
+    TeacherListComponent
   ],
   templateUrl: './mainpage.component.html',
   styleUrls: ['./mainpage.component.css'],

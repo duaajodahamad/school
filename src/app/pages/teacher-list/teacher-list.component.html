@@ -1,0 +1,20 @@
+<div>
+<a href="#" routerlink="/add-teacher" class=""  >+Add</a>
+<br>
+<br>
+<hr>
+  <table >
+    <thead>
+      <th>ID</th>
+      <th>Name</th>
+      <th>Email</th>
+    </thead>
+    <tbody>
+      <tr *ngFor="let obj of teachers">
+        <td>{{ obj.id}}</td>
+        <td>{{ obj.name }}</td>
+        <td>{{ obj.email }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

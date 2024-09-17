@@ -4,6 +4,8 @@ import { MainpageComponent } from './mainpage/mainpage.component';
 import { AddStudentComponent } from './pages/add-student/add-student.component';
 import { CourseComponent } from './pages/course/course/course.component';
 import { AddCourseComponent } from './pages/course/add-course/add-course.component';
+import { TeacherListComponent } from './pages/teacher-list/teacher-list.component';
+import { AddTeacherComponent } from './pages/add-teacher/add-teacher.component';
 
 export const routes: Routes = [
   {
@@ -30,5 +32,13 @@ export const routes: Routes = [
   {
     path:'add-course',
     component:AddCourseComponent
+  },
+  {
+    path:'teacher-list',
+    component:TeacherListComponent
+  },
+  {
+    path:'add-teacher',
+    component:AddTeacherComponent
   }
 ];

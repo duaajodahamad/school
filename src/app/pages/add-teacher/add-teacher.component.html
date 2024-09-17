@@ -1,0 +1,48 @@
+ 
+
+<form (ngSubmit)="Onsubmit()" class="student-form">
+    <div class="form-group">
+      <label for="stId">  Id</label>
+      <input
+        type="number"
+        [(ngModel)]="teacherObj.id"
+        class="form-control"
+        id="stId"
+        name="stId"
+        required
+      />
+    </div>
+    <div class="form-group">
+      <label for="name">Name</label>
+      <input
+        type="text"
+        [(ngModel)]="teacherObj.name"
+        class="form-control"
+        id="name"
+        name="name"
+        required
+      />
+    </div>
+    <div class="form-group">
+      <label for="email">Email</label>
+      <input
+        type="email"
+        [(ngModel)]="teacherObj.email"
+        class="form-control"
+        id="email"
+        name="email"
+        required
+      />
+    </div>
+  
+    <button type="submit" class="btn btn-primary submit-btn">Submit</button>
+  </form>
+   
+ 
+  
+
+<div>
+    {{teacherObj | json}} 
+     <!-- convert the object type from the right side to the type in the left side  -->
+</div>
+
