@@ -1,7 +1,27 @@
 <h1 class="table-title">{{ title }}</h1>
 <button (click)="navigateTo('add-course')" class="nav-btn">Add course</button>
 <button (click)="navigateTo('')" class="nav-btn">Home</button>
-<table class="table table-striped student-table">
+
+<table mat-table [dataSource]="courses" >
+  <ng-container matColumnDef="id"> 
+    <th mat-header-cell *matHeaderCellDef> No. </th>
+    <td mat-cell *matCellDef="let course"> {{course.id}} </td>
+  </ng-container>
+  <ng-container matColumnDef="name"> 
+  <th mat-header-cell *matHeaderCellDef> Name. </th>
+  <td mat-cell *matCellDef="let course"> {{course.name}} </td>
+</ng-container>
+<ng-container matColumnDef="description"> 
+<th mat-header-cell *matHeaderCellDef> description... </th>
+<td mat-cell *matCellDef="let course"> {{course.description}} </td>
+</ng-container>
+
+<tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+<tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+</table>
+
+<!-- <table class="table table-striped student-table">
   <thead>
     <tr>
       <th>Id</th>
@@ -36,4 +56,4 @@
       </td>
     </tr>
   </tbody>
-</table>
+</table> -->
