@@ -1,0 +1,16 @@
+ 
+<h1>Add New Semester</h1>
+ <form  [formGroup]="semesterForm" (ngSubmit)="save()">
+    <hr>
+    <div>
+        <label>Semester Id</label>
+        <input formControlName="id" type="text" name="id" />
+    </div>
+    <div>
+        <label>Semester Name</label>
+        <input  formControlName="name" type="text" name="name" />
+    </div> 
+    <div>
+        <button class="action-btn" type="submit" >+Save</button>
+    </div>
+ </form>

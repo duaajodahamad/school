@@ -22,9 +22,11 @@
         >
           Edit
         </button>
-        <button (click)="deleteCourse(course.id)" class="action-btn delete">
-          Delete
-        </button>
+       <button (click)="delete(course)" class="action-btn" >
+        Delete {{course.id}}
+       </button>
+
+
         <button
           (click)="navigateTo('course', course.id)"
           class="action-btn view"

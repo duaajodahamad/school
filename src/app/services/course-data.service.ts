@@ -33,6 +33,11 @@ export class CourseDataService {
     );
     this.courses.next(this.sourceCourseModel);
   }
+  deleteCourse2(model: CourseModel) {
+    let index = this.sourceCourseModel.indexOf(model);
+    this.sourceCourseModel.splice(index, 1);
+    this.courses.next(this.sourceCourseModel);
+  }
   updateCourse(course: CourseModel) {
     const index = this.sourceCourseModel.findIndex((c) => c.id === course.id);
     if (index !== -1) {

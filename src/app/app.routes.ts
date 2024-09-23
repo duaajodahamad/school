@@ -1,3 +1,4 @@
+import { Component } from '@angular/core';
 import { Routes } from '@angular/router';
 import { MainpageComponent } from './mainpage/mainpage.component';
 import { CourseComponent } from './pages/course/course/course.component';
@@ -9,6 +10,8 @@ import { TeacherListComponent } from './pages/Teachers/teachers/teachers.compone
 import { TeachViewComponent } from './pages/Teachers/teach-view/teach-view.component';
 import { CourseViewComponent } from './pages/course/course-view/course-view.component';
 import { StudentViewComponent } from './pages/student/student-view/student-view.component';
+import { SemesterListComponent } from './pages/semester-list/semester-list.component';
+import { AddSemesterComponent } from './pages/add-semester/add-semester.component';
 
 export const routes: Routes = [
   {
@@ -58,4 +61,12 @@ export const routes: Routes = [
     path: 'edit-course/:id',
     component: AddCourseComponent,
   },
+  {
+    path:'semester',
+    component:SemesterListComponent
+  },
+  {
+    path:'semester/add',
+    component:AddSemesterComponent
+  }
 ];

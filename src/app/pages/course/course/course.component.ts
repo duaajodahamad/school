@@ -37,4 +37,8 @@ export class CourseComponent implements OnInit {
   deleteCourse(id: number) {
     this.courseDataService.deleteCourse(id);
   }
+
+  delete(CourseModel:CourseModel){
+   console.log(CourseModel);
+  }
 }
