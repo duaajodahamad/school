@@ -15,7 +15,8 @@ form {
   box-shadow: 0 0 10px #ccc;
 }
 
-form div {
+/* Only target direct child divs of form */
+form > div {
   margin-bottom: 15px;
 }
 
@@ -35,7 +36,8 @@ form input {
   box-sizing: border-box;
 }
 
-button[type='submit'] {
+button[type='submit'],
+button[type='button'] {
   width: 100%;
   padding: 12px;
   background-color: #5c6bc0;
@@ -50,6 +52,31 @@ button[type='submit'] {
 button[type='submit']:disabled {
   background-color: #ccc;
   cursor: not-allowed;
+}
+
+/* Styles for address forms */
+.address-form {
+  border: 1px solid #ccc;
+  padding: 40px 15px 15px 15px;
+  margin-bottom: 20px;
+  border-radius: 5px;
+  position: relative;
+}
+
+.address-form h4 {
+  margin-top: 0;
+}
+
+.address-form .remove-btn {
+width: 20%;
+  background-color: #e57373;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+}
+
+.address-form .remove-btn:hover {
+  background-color: #d32f2f;
 }
 
 ul {
@@ -83,18 +110,20 @@ p {
   color: #777;
 }
 
+/* Responsive styles */
 @media (min-width: 600px) {
-  form div {
+  /* Only target direct child divs of address-form */
+  .address-form > div {
     display: flex;
     align-items: center;
   }
 
-  form label {
+  .address-form label {
     width: 150px;
     margin-bottom: 0;
   }
 
-  form input {
+  .address-form input {
     flex: 1;
   }
 }
