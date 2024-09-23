@@ -1,15 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { SemesterDataService } from '../../../services/semester-data.service';
-import { SemesterModel } from '../../../Models/SemesterModel';
+import { SemesterDataService, SemesterModel } from '../../../services/semester-data.service';
 import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-view-semester',
   standalone: true,
+  imports: [CommonModule],
   templateUrl: './view-semester.component.html',
   styleUrls: ['./view-semester.component.css'],
-  imports: [CommonModule],
 })
 export class ViewSemesterComponent implements OnInit {
   semesterId!: number;

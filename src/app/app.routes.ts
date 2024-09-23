@@ -4,11 +4,15 @@ import { CourseComponent } from './pages/course/course/course.component';
 import { AddCourseComponent } from './pages/course/add-course/add-course.component';
 import { AddTeacherComponent } from './pages/Teachers/add-teacher/add-teacher.component';
 import { AddStudentComponent } from './pages/student/add-student/add-student.component';
-import { StudentListComponent } from './pages/student/student-list/student-list.component';
 import { TeacherListComponent } from './pages/Teachers/teachers/teachers.component';
 import { TeachViewComponent } from './pages/Teachers/teach-view/teach-view.component';
 import { CourseViewComponent } from './pages/course/course-view/course-view.component';
 import { StudentViewComponent } from './pages/student/student-view/student-view.component';
+import { AddSemesterComponent } from './pages/semester/add-semester/add-semester.component';
+import { ViewSemesterComponent } from './pages/semester/view-semester/view-semester.component';
+import { SemesterListComponent } from './pages/semester/semester-list/semester-list.component';
+import { StudentListComponent } from './pages/student/student-list/student-list.component';
+import { AddAddressComponent } from './pages/address/add-address/add-address.component';
 
 export const routes: Routes = [
   {
@@ -28,8 +32,12 @@ export const routes: Routes = [
     component: MainpageComponent,
   },
   {
-    path: 'studentlist',
+    path: 'studentList',
     component: StudentListComponent,
+  },
+  {
+    path: 'semesterList',
+    component: SemesterListComponent,
   },
   {
     path: 'add-student',
@@ -46,6 +54,16 @@ export const routes: Routes = [
   { path: 'add-teacher', component: AddTeacherComponent },
   { path: 'edit-teacher/:id', component: AddTeacherComponent },
 
+  { path: 'add-semester', component: AddSemesterComponent },
+  { path: 'edit-semester/:id', component: AddSemesterComponent },
+  {
+    path: 'semester/:id',
+    component: ViewSemesterComponent,
+  },
+
+  { path: 'add-address/:studentId', component: AddAddressComponent },
+
+  
   {
     path: 'courseList',
     component: CourseComponent,

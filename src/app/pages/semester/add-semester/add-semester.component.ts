@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators, AbstractControl } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
-import { SemesterDataService } from '../../../services/semester-data.service';
 import { CommonModule, JsonPipe } from '@angular/common';
+import { SemesterDataService } from '../../../services/semester-data.service';
 
 @Component({
   selector: 'app-add-semester',

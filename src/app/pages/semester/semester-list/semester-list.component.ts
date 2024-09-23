@@ -1,19 +1,18 @@
+import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { SemesterDataService, SemesterModel } from '../../../services/semester-data.service';
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
-import { Router, RouterModule } from '@angular/router';
-import { SemesterModel } from '../../../Models/SemesterModel';
-import { SemesterDataService } from '../../../services/semester-data.service';
 
 @Component({
   selector: 'app-semester-list',
-  standalone: true,
-  imports: [CommonModule,RouterModule],
   templateUrl: './semester-list.component.html',
-  styleUrl: './semester-list.component.css'
+  styleUrls: ['./semester-list.component.css'],
+  standalone: true,
+  imports: [CommonModule],
 })
-export class SemesterListComponent {
+export class SemesterListComponent implements OnInit {
   semesters: SemesterModel[] = [];
-  title = 'Semester List';
+  title: string = 'Semester List';
   constructor(private router: Router, private semesterDataService: SemesterDataService) {}
 
   ngOnInit(): void {

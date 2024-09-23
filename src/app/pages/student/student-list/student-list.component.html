@@ -1,5 +1,5 @@
 <h1 class="table-title">{{ title }}</h1>
-<button (click)="navigateTo('add-student')" class="nav-btn">Add student</button>
+<button (click)="navigateTo('add-student')" class="nav-btn">Add Student</button>
 <button (click)="navigateTo('')" class="nav-btn">Home</button>
 <table class="table table-striped student-table">
   <thead>
@@ -32,6 +32,12 @@
           class="action-btn view"
         >
           View
+        </button>
+        <button
+          (click)="navigateTo('add-address', student.stId)"
+          class="action-btn view"
+        >
+          Addresses
         </button>
       </td>
     </tr>

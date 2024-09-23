@@ -1,9 +1,15 @@
 import { Injectable } from '@angular/core';
-import { SemesterModel } from '../Models/SemesterModel';
 import { BehaviorSubject } from 'rxjs';
 
+export interface SemesterModel {
+  id: number;
+  name: string;
+  startDate: string;
+  endDate: string;
+}
+
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class SemesterDataService {
   public sourceSemesterModel: SemesterModel[] = [
