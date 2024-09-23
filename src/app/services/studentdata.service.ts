@@ -42,4 +42,15 @@ export class StudentdataService {
       this.students.next(this.sourceStudentModel);
     }
   }
+
+  search(input:string){
+
+    let newValues=this.sourceStudentModel.filter(c=>c.Name.includes(input) 
+    || c.email.includes(input) 
+    || c.stId.toString().includes(input) 
+    || c.phone.includes(input));
+
+    this.students.next(newValues);
+  }
+
 }

@@ -1,3 +1,4 @@
+import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { Component, Input, OnChanges, OnDestroy, OnInit, SimpleChanges } from '@angular/core';
 import { StudnetModel } from '../../../Models/student.modle';
@@ -7,7 +8,7 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-student-list',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule,FormsModule],
   templateUrl: './student-list.component.html',
   styleUrls: ['./student-list.component.css'],
 })
@@ -15,7 +16,7 @@ export class StudentListComponent implements OnInit,OnChanges,OnDestroy {
   title: string = 'Student List';
   sudentSoucrReference:any;
   @Input() students: StudnetModel[] = [];
-
+  test!:string;
   constructor(
     public studentservice: StudentdataService,
     private router: Router
@@ -44,5 +45,10 @@ export class StudentListComponent implements OnInit,OnChanges,OnDestroy {
 
   ngOnChanges(changes: SimpleChanges): void {
     alert("hh");
+  }
+
+
+  search(){
+      this.studentservice.search(this.test);
   }
 }

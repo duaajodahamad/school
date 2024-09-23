@@ -12,8 +12,8 @@ import { StudentViewComponent } from './pages/student/student-view/student-view.
 import { AddSemesterComponent } from './pages/semester/add-semester/add-semester.component';
 import { ViewSemesterComponent } from './pages/semester/view-semester/view-semester.component';
 import { SemesterListComponent } from './pages/semester/semester-list/semester-list.component';
-import { StudentListComponent } from './pages/student/student-list/student-list.component';
-import { AddAddressComponent } from './pages/address/add-address/add-address.component';
+import { StudentListComponent } from './pages/student/student-list/student-list.component'; 
+import { AddAddressComponent } from './pages/Address/tmp-address/add-address.component';
 
 export const routes: Routes = [
   {
