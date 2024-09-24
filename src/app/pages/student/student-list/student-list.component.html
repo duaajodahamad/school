@@ -1,52 +1,76 @@
-<h1 class="table-title">{{ title }}</h1>
-<button (click)="navigateTo('add-student')" class="nav-btn">Add Student</button>
-<button (click)="navigateTo('')" class="nav-btn">Home</button>
+<h1 mat-title>{{ title }}</h1>
+<button mat-raised-button color="primary" (click)="navigateTo('add-student')">
+  Add Student
+</button>
+<button mat-raised-button (click)="navigateTo('')">Home</button>
 
-
-<div style="    float: right; padding: 10px;">
-  <input type="text"  class="nav-btn"  (keyup)="search()"  [(ngModel)]="test"  placeholder="Search Student"  />
-<label>{{test}}</label>
+<div style="float: right; padding: 10px">
+  <mat-form-field>
+    <input
+      matInput
+      [(ngModel)]="test"
+      (keyup)="search()"
+      placeholder="Search Student"
+    />
+  </mat-form-field>
 </div>
 
-<table class="table table-striped student-table">
-  <thead>
-    <tr>
-      <th>Id</th>
-      <th>Name</th>
-      <th>Email</th>
-      <th>Phone</th>
-      <th>Actions</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let student of students" class="table-row">
-      <td>{{ student.stId }}</td>
-      <td>{{ student.Name }}</td>
-      <td>{{ student.email }}</td>
-      <td>{{ student.phone }}</td>
-      <td>
-        <button
-          (click)="navigateTo('edit-student', student.stId)"
-          class="action-btn"
-        >
-          Edit
-        </button>
-        <button (click)="deleteStudent(student.stId)" class="action-btn delete">
-          Delete
-        </button>
-        <button
-          (click)="navigateTo('student', student.stId)"
-          class="action-btn view"
-        >
-          View
-        </button>
-        <button
-          (click)="navigateTo('add-address', student.stId)"
-          class="action-btn view"
-        >
-          Addresses
-        </button>
-      </td>
-    </tr>
-  </tbody>
+<table mat-table [dataSource]="students" class="mat-elevation-z8">
+  <ng-container matColumnDef="stId">
+    <th mat-header-cell *matHeaderCellDef>Id</th>
+    <td mat-cell *matCellDef="let student">{{ student.stId }}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="Name">
+    <th mat-header-cell *matHeaderCellDef>Name</th>
+    <td mat-cell *matCellDef="let student">{{ student.Name }}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="email">
+    <th mat-header-cell *matHeaderCellDef>Email</th>
+    <td mat-cell *matCellDef="let student">{{ student.email }}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="phone">
+    <th mat-header-cell *matHeaderCellDef>Phone</th>
+    <td mat-cell *matCellDef="let student">{{ student.phone }}</td>
+  </ng-container>
+  <ng-container matColumnDef="actions" class="actions-column">
+    <th mat-header-cell *matHeaderCellDef>Actions</th>
+    <td mat-cell *matCellDef="let student">
+      <button
+        mat-icon-button
+        color="accent"
+        class="action-button"
+        (click)="navigateTo('edit-student', student.stId)"
+      >
+        <mat-icon>edit</mat-icon>
+      </button>
+      <button
+        mat-icon-button
+        color="warn"
+        class="action-button"
+        (click)="deleteStudent(student.stId)"
+      >
+        <mat-icon>delete</mat-icon>
+      </button>
+      <button
+        mat-icon-button
+        class="action-button"
+        (click)="navigateTo('student', student.stId)"
+      >
+        <mat-icon>visibility</mat-icon>
+      </button>
+      <button
+        mat-icon-button
+        class="action-button"
+        (click)="navigateTo('add-address', student.stId)"
+      >
+        <mat-icon>Addresses</mat-icon>
+      </button>
+    </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
 </table>

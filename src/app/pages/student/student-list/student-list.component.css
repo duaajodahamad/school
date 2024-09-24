@@ -72,16 +72,17 @@
 
 /* Button Styling */
 .action-btn {
-  background-color: #3498db; /* Light blue background */
+  background-color: #3498db;
   color: white;
   border: none;
-  padding: 6px 16px; /* Add some padding */
-  font-size: 15px; /* Adjust font size */
-  border-radius: 5px; /* Rounded corners */
+  padding: 6px 16px;
+  font-size: 15px;
+  border-radius: 5px;
   cursor: pointer;
-  margin-right: 10px; /* Space between buttons */
-  transition: background-color 0.3s ease, transform 0.2s ease; /* Smooth transitions */
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+  margin-right: 10px;
+  width: 200px;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 /* Hover effect for buttons */
@@ -113,4 +114,38 @@
 
 .action-btn.view:hover {
   background-color: #27ae60; /* Darker green on hover */
+}
+
+.mat-column-actions {
+  width: 700px;
+}
+
+.mat-mdc-icon-button .mat-mdc-button-touch-target {
+  position: absolute;
+  top: 50%;
+  height: 48px;
+  left: 50%;
+  width: 150px;
+  transform: translate(-50%, -50%);
+  display: var(--mat-icon-button-touch-target-display);
+}
+
+.action-button {
+  width: 100px;
+  height: 48px;
+  min-width: 48px;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+}
+
+td.mat-cell {
+  white-space: nowrap;
+}
+
+.mat-mdc-icon-button .mdc-button__label,
+.mat-mdc-icon-button .mat-icon {
+  z-index: 1;
+  position: relative;
+  width: 100%;
 }
