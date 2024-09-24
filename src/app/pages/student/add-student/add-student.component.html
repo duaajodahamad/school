@@ -1,96 +1,73 @@
-<button (click)="navigateTo('studentList')" class="nav-btn">Back</button>
+<button mat-raised-button color="primary" (click)="navigateTo('studentList')">
+  Back
+</button>
 
 <form [formGroup]="studentForm" (ngSubmit)="Onsubmit()" class="student-form">
-  <div class="form-group">
-    <label for="stId">Student Id</label>
-    <input
-      type="number"
-      formControlName="stId"
-      class="form-control"
-      id="stId"
-      required
-      [readonly]="editMode"
-    />
-    <div
-      *ngIf="
-        studentForm.get('stId')!.invalid && studentForm.get('stId')!.touched
-      "
-    >
-      <small class="text-danger">Student ID is required.</small>
-    </div>
-  </div>
-
-  <div class="form-group">
-    <label for="name">Name</label>
-    <input
-      type="text"
-      formControlName="Name"
-      class="form-control"
-      id="name"
-      required
-    />
-    <div
-      *ngIf="
-        studentForm.get('Name')!.invalid && studentForm.get('Name')!.touched
-      "
-    >
-      <small class="text-danger"
-        >Name is required and must be at least 3 characters long.</small
+  <div class="form-row">
+    <mat-form-field appearance="outline" class="form-group half-width">
+      <mat-label>Student Id</mat-label>
+      <input
+        matInput
+        type="number"
+        formControlName="stId"
+        id="stId"
+        [readonly]="editMode"
+        required
+      />
+      <mat-error
+        *ngIf="
+          studentForm.get('stId')!.invalid && studentForm.get('stId')!.touched
+        "
       >
-    </div>
+        Student ID is required.
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="form-group half-width">
+      <mat-label>Name</mat-label>
+      <input matInput type="text" formControlName="Name" id="name" required />
+      <mat-error
+        *ngIf="
+          studentForm.get('Name')!.invalid && studentForm.get('Name')!.touched
+        "
+      >
+        Name is required and must be at least 3 characters long.
+      </mat-error>
+    </mat-form-field>
   </div>
 
-  <div class="form-group">
-    <label for="email">Email</label>
-    <input
-      type="email"
-      formControlName="email"
-      class="form-control"
-      id="email"
-      required
-    />
-    <div
-      *ngIf="
-        studentForm.get('email')!.invalid && studentForm.get('email')!.touched
-      "
-    >
-      <small class="text-danger">Valid email is required.</small>
-    </div>
-  </div>
+  <div class="form-row">
+    <mat-form-field appearance="outline" class="form-group half-width">
+      <mat-label>Email</mat-label>
+      <input
+        matInput
+        type="email"
+        formControlName="email"
+        id="email"
+        required
+      />
+      <mat-error
+        *ngIf="
+          studentForm.get('email')!.invalid && studentForm.get('email')!.touched
+        "
+      >
+        Valid email is required.
+      </mat-error>
+    </mat-form-field>
 
-  <div class="form-group">
-    <label for="phone">Phone</label>
-    <input
-      type="text"
-      formControlName="phone"
-      class="form-control"
-      id="phone"
-    />
+    <mat-form-field appearance="outline" class="form-group half-width">
+      <mat-label>Phone</mat-label>
+      <input matInput type="text" formControlName="phone" id="phone" />
+    </mat-form-field>
   </div>
 
   <button
+    mat-raised-button
+    color="primary"
     type="submit"
-    class="btn btn-primary submit-btn"
     [disabled]="studentForm.invalid"
+    class="submit-btn"
   >
     Submit
   </button>
 </form>
-
-<div>
-  <div class="form-group">
-    <label for="stId">Student Id</label>
-    {{ studentForm.value.stId }}
-  </div>
-  <div class="form-group">
-    <label for="name">Name</label>
-    {{ studentForm.value.Name }}
-  </div>
-  <div class="form-group">
-    <label for="email">Email</label>
-    {{ studentForm.value.email }}
-  </div>
-  <div class="form-group">
-    <label for="phone"> </label>
-  </div>
-</div>
