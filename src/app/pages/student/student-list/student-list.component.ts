@@ -6,13 +6,9 @@ import {
   OnInit,
   SimpleChanges,
 } from '@angular/core';
-import {
-  StudnetBackEndModel,
-  StudnetModel,
-} from '../../../Models/student.modle';
+import { StudnetBackEndModel } from '../../../Models/student.modle';
 import { StudentdataService } from '../../../services/studentdata.service';
 import { Router } from '@angular/router';
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
@@ -45,9 +41,12 @@ export class StudentListComponent implements OnInit, OnChanges, OnDestroy {
   title: string = 'Student List';
   sudentSoucrReference: any;
   @Input() students: StudnetBackEndModel[] = [];
+  filteredStudents: StudnetBackEndModel[] = [];
   test!: string;
   displayedColumns: string[] = ['stId', 'Name', 'email', 'phone', 'actions'];
-  dataSource = new MatTableDataSource<StudnetBackEndModel>(this.students);
+  dataSource = new MatTableDataSource<StudnetBackEndModel>(
+    this.filteredStudents
+  );
 
   constructor(
     public studentservice: StudentdataService,
@@ -55,14 +54,13 @@ export class StudentListComponent implements OnInit, OnChanges, OnDestroy {
     private studentApiService: StudentApiService
   ) {}
 
-  ngOnDestroy(): void {
-    //this.sudentSoucrReference.unsubscribe();
-  }
+  ngOnDestroy(): void {}
 
   ngOnInit() {
     this.studentApiService.getStudents().subscribe((c) => {
       this.students = c;
-      this.dataSource.data = c;
+      this.filteredStudents = c;
+      this.dataSource.data = this.filteredStudents;
     });
   }
 
@@ -77,13 +75,25 @@ export class StudentListComponent implements OnInit, OnChanges, OnDestroy {
   deleteStudent(id: number) {
     this.studentApiService.deleteStudent(id).subscribe((c) => {
       this.students = this.students.filter((x) => x.id !== id);
-      this.dataSource.data = this.students;
+      this.filteredStudents = this.students;
+      this.dataSource.data = this.filteredStudents;
     });
   }
 
   ngOnChanges(changes: SimpleChanges): void {}
 
   search() {
-    this.studentservice.search(this.test);
+    if (this.test && this.test.trim()) {
+      this.filteredStudents = this.students.filter(
+        (student) =>
+          student.name.toLowerCase().includes(this.test.toLowerCase()) ||
+          student.email.toLowerCase().includes(this.test.toLowerCase()) ||
+          student.phoneNumber.includes(this.test)
+      );
+    } else {
+      this.filteredStudents = this.students;
+    }
+
+    this.dataSource.data = this.filteredStudents;
   }
 }
