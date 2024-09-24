@@ -14,6 +14,7 @@ import { ViewSemesterComponent } from './pages/semester/view-semester/view-semes
 import { SemesterListComponent } from './pages/semester/semester-list/semester-list.component';
 import { StudentListComponent } from './pages/student/student-list/student-list.component'; 
 import { AddAddressComponent } from './pages/Address/tmp-address/add-address.component';
+import { ProductsComponent } from './pages/products/products.component';
 
 export const routes: Routes = [
   {
@@ -84,5 +85,9 @@ export const routes: Routes = [
   {
     path:'semester/add',
     component:AddSemesterComponent
+  },
+  {
+    path:'product',
+    component:ProductsComponent
   }
 ];

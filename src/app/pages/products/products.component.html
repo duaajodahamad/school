@@ -1,0 +1,21 @@
+
+
+<div *ngFor="let prod of datasource">
+    <mat-card class="example-card" appearance="outlined">
+        <mat-card-header>
+          <div mat-card-avatar class="example-header-image"></div>
+          <mat-card-title>{{prod.title}}</mat-card-title>
+          <mat-card-subtitle>{{prod.category}}</mat-card-subtitle>
+        </mat-card-header>
+        <img mat-card-image [src]="prod.image" alt="Photo of a Shiba Inu">
+        <mat-card-content>
+          <p>
+            {{prod.description}}
+          </p>
+        </mat-card-content>
+        <mat-card-actions>
+          <button mat-button>{{prod.price}}</button>
+          <button mat-button>Rating: {{prod.rating?.rate}}</button>
+        </mat-card-actions>
+      </mat-card>
+</div>
