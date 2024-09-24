@@ -12,9 +12,10 @@ import { StudentViewComponent } from './pages/student/student-view/student-view.
 import { AddSemesterComponent } from './pages/semester/add-semester/add-semester.component';
 import { ViewSemesterComponent } from './pages/semester/view-semester/view-semester.component';
 import { SemesterListComponent } from './pages/semester/semester-list/semester-list.component';
-import { StudentListComponent } from './pages/student/student-list/student-list.component'; 
+import { StudentListComponent } from './pages/student/student-list/student-list.component';
 import { AddAddressComponent } from './pages/Address/tmp-address/add-address.component';
 import { ProductsComponent } from './pages/products/products.component';
+import { CheckPhoneNumberComponent } from './pages/student/check-phone-number/check-phone-number.component';
 
 export const routes: Routes = [
   {
@@ -65,7 +66,7 @@ export const routes: Routes = [
 
   { path: 'add-address/:studentId', component: AddAddressComponent },
 
-  
+  { path: 'CheckPhone', component: CheckPhoneNumberComponent },
   {
     path: 'courseList',
     component: CourseComponent,
@@ -79,15 +80,15 @@ export const routes: Routes = [
     component: AddCourseComponent,
   },
   {
-    path:'semester',
-    component:SemesterListComponent
+    path: 'semester',
+    component: SemesterListComponent,
   },
   {
-    path:'semester/add',
-    component:AddSemesterComponent
+    path: 'semester/add',
+    component: AddSemesterComponent,
   },
   {
-    path:'product',
-    component:ProductsComponent
-  }
+    path: 'product',
+    component: ProductsComponent,
+  },
 ];

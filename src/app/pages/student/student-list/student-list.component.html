@@ -3,7 +3,13 @@
   Add Student
 </button>
 <button mat-raised-button (click)="navigateTo('')">Home</button>
-
+<button
+  mat-icon-button
+  class="action-button"
+  (click)="navigateTo('CheckPhone')"
+>
+  <mat-icon>perm_phone_msg</mat-icon>
+</button>
 <div style="float: right; padding: 10px">
   <mat-form-field>
     <input
@@ -18,12 +24,12 @@
 <table mat-table [dataSource]="students" class="mat-elevation-z8">
   <ng-container matColumnDef="stId">
     <th mat-header-cell *matHeaderCellDef>Id</th>
-    <td mat-cell *matCellDef="let student">{{ student.stId }}</td>
+    <td mat-cell *matCellDef="let student">{{ student.id }}</td>
   </ng-container>
 
   <ng-container matColumnDef="Name">
     <th mat-header-cell *matHeaderCellDef>Name</th>
-    <td mat-cell *matCellDef="let student">{{ student.Name }}</td>
+    <td mat-cell *matCellDef="let student">{{ student.name }}</td>
   </ng-container>
 
   <ng-container matColumnDef="email">
@@ -33,8 +39,14 @@
 
   <ng-container matColumnDef="phone">
     <th mat-header-cell *matHeaderCellDef>Phone</th>
-    <td mat-cell *matCellDef="let student">{{ student.phone }}</td>
+    <td mat-cell *matCellDef="let student">{{ student.phoneNumber }}</td>
   </ng-container>
+
+  <ng-container matColumnDef="city">
+    <th mat-header-cell *matHeaderCellDef>city</th>
+    <td mat-cell *matCellDef="let student">{{ student.city }}</td>
+  </ng-container>
+
   <ng-container matColumnDef="actions" class="actions-column">
     <th mat-header-cell *matHeaderCellDef>Actions</th>
     <td mat-cell *matCellDef="let student">

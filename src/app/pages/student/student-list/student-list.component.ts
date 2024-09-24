@@ -6,7 +6,10 @@ import {
   OnInit,
   SimpleChanges,
 } from '@angular/core';
-import { StudnetModel } from '../../../Models/student.modle';
+import {
+  StudnetBackEndModel,
+  StudnetModel,
+} from '../../../Models/student.modle';
 import { StudentdataService } from '../../../services/studentdata.service';
 import { Router } from '@angular/router';
 import { NgModule } from '@angular/core';
@@ -19,6 +22,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSortModule } from '@angular/material/sort';
 import { MatPaginatorModule } from '@angular/material/paginator';
+import { StudentApiService } from '../../../services/student-services/student-api.service';
 
 @Component({
   selector: 'app-student-list',
@@ -40,22 +44,23 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 export class StudentListComponent implements OnInit, OnChanges, OnDestroy {
   title: string = 'Student List';
   sudentSoucrReference: any;
-  @Input() students: StudnetModel[] = [];
+  @Input() students: StudnetBackEndModel[] = [];
   test!: string;
   displayedColumns: string[] = ['stId', 'Name', 'email', 'phone', 'actions'];
-  dataSource = new MatTableDataSource<StudnetModel>(this.students);
+  dataSource = new MatTableDataSource<StudnetBackEndModel>(this.students);
 
   constructor(
     public studentservice: StudentdataService,
-    private router: Router
+    private router: Router,
+    private studentApiService: StudentApiService
   ) {}
 
   ngOnDestroy(): void {
-    this.sudentSoucrReference.unsubscribe();
+    //this.sudentSoucrReference.unsubscribe();
   }
 
   ngOnInit() {
-    this.sudentSoucrReference = this.studentservice.students.subscribe((c) => {
+    this.studentApiService.getStudents().subscribe((c) => {
       this.students = c;
       this.dataSource.data = c;
     });
@@ -70,7 +75,10 @@ export class StudentListComponent implements OnInit, OnChanges, OnDestroy {
   }
 
   deleteStudent(id: number) {
-    this.studentservice.deleteStudent(id);
+    this.studentApiService.deleteStudent(id).subscribe((c) => {
+      this.students = this.students.filter((x) => x.id !== id);
+      this.dataSource.data = this.students;
+    });
   }
 
   ngOnChanges(changes: SimpleChanges): void {}

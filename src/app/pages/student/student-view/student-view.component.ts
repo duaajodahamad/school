@@ -1,8 +1,12 @@
 import { Component } from '@angular/core';
-import { StudnetModel } from '../../../Models/student.modle';
+import {
+  StudnetBackEndModel,
+  StudnetModel,
+} from '../../../Models/student.modle';
 import { ActivatedRoute } from '@angular/router';
 import { StudentdataService } from '../../../services/studentdata.service';
 import { CommonModule } from '@angular/common';
+import { StudentApiService } from '../../../services/student-services/student-api.service';
 
 @Component({
   selector: 'app-student-view',
@@ -13,28 +17,30 @@ import { CommonModule } from '@angular/common';
 })
 export class StudentViewComponent {
   studentId!: number;
-  student: StudnetModel = {
-    stId: 0,
-    Name: '',
+  student: StudnetBackEndModel = {
+    id: 0,
+    name: '',
     email: '',
-    phone: '',
+    phoneNumber: '',
+    city: '',
   };
 
   constructor(
     private route: ActivatedRoute,
-    private studentdataService: StudentdataService
+    private studentdataService: StudentdataService,
+    private studentApiService: StudentApiService
   ) {}
 
   ngOnInit(): void {
     this.route.paramMap.subscribe((params) => {
       this.studentId = Number(params.get('id'));
-      this.getTeacherById(this.studentId);
+      this.getStudentById(this.studentId);
     });
   }
 
-  getTeacherById(id: number): void {
-    const allStudent = this.studentdataService.sourceStudentModel;
-    this.student =
-      allStudent.find((t) => t.stId === id) || ({} as StudnetModel);
+  getStudentById(id: number): void {
+    this.studentApiService.getStudentById(id).subscribe((student) => {
+      this.student = student;
+    });
   }
 }
