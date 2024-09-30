@@ -16,8 +16,11 @@ import { StudentListComponent } from './pages/student/student-list/student-list.
 import { AddAddressComponent } from './pages/Address/tmp-address/add-address.component';
 import { ProductsComponent } from './pages/products/products.component';
 import { CheckPhoneNumberComponent } from './pages/student/check-phone-number/check-phone-number.component';
+import { NotFoundComponent } from './pages/not-found/not-found.component';
+import { UserListComponent } from './pages/user-list/user-list.component';
 
 export const routes: Routes = [
+
   {
     path: 'teacher/:id',
     component: TeachViewComponent,
@@ -91,4 +94,12 @@ export const routes: Routes = [
     path: 'product',
     component: ProductsComponent,
   },
+  {
+    path:'users',
+    component:UserListComponent
+  },
+  {
+    path:'**',
+    component: NotFoundComponent
+}
 ];
