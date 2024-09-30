@@ -7,6 +7,7 @@ import {
   HTTP_INTERCEPTORS,
   HttpClient,
   provideHttpClient,
+  withInterceptors,
 } from '@angular/common/http';
 import { tokenInterceptor } from './services/intercepter/token.interceptor';
 
@@ -15,11 +16,11 @@ export const appConfig: ApplicationConfig = {
     provideRouter(routes),
     provideAnimationsAsync(),
     provideAnimationsAsync(),
-    provideHttpClient(),
-    {
-      provide: HTTP_INTERCEPTORS,
-      useValue: tokenInterceptor,
-      multi: true,
-    },
+    provideHttpClient(withInterceptors([tokenInterceptor])),
+    // {
+    //   provide: HTTP_INTERCEPTORS,
+    //   useFactory: tokenInterceptor,
+    //   multi: true,
+    // },
   ],
 };
