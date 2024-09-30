@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ChildComComponent } from '../pages/child-com/child-com.component';
 import { LoginComponent } from '../login/login.component';
 import { CommonModule } from '@angular/common';
@@ -6,6 +6,7 @@ import { StudnetModel } from '../Models/student.modle';
 import { AddStudentComponent } from '../pages/student/add-student/add-student.component';
 import { StudentListComponent } from '../pages/student/student-list/student-list.component';
 import { Router, RouterOutlet } from '@angular/router';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-mainpage',
@@ -21,13 +22,13 @@ import { Router, RouterOutlet } from '@angular/router';
   templateUrl: './mainpage.component.html',
   styleUrls: ['./mainpage.component.css'],
 })
-export class MainpageComponent {
+export class MainpageComponent implements OnInit {
   title = 'school';
   islogin: boolean = false;
   showAddForm: boolean = false;
   messageToChild: string = 'Hey from parent ';
   btnText: string = 'Add Student';
-
+  loginUserInfo: any;
   loginparams = { islogin: false };
 
   // List of students for the table
@@ -39,7 +40,7 @@ export class MainpageComponent {
     { stId: 5, Name: 'Jill', email: 'test5@gmail.com', phone: '1234567890' },
   ];
 
-  constructor(private router: Router) {
+  constructor(private router: Router, private authService: AuthService) {
     let islogin = localStorage.getItem('islogin');
     if (islogin == null) {
       localStorage.setItem('islogin', 'false');
@@ -53,6 +54,11 @@ export class MainpageComponent {
     } else {
       this.StudentList = JSON.parse(storedStudents);
     }
+  }
+  ngOnInit(): void {
+    this.authService.getUserInfo().subscribe((c: any) => {
+      this.loginUserInfo = c;
+    });
   }
 
   onStudentAdded() {

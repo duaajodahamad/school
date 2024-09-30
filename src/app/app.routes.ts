@@ -18,9 +18,9 @@ import { ProductsComponent } from './pages/products/products.component';
 import { CheckPhoneNumberComponent } from './pages/student/check-phone-number/check-phone-number.component';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
 import { UserListComponent } from './pages/user-list/user-list.component';
+import { ViewUserComponent } from './pages/view-user/view-user.component';
 
 export const routes: Routes = [
-
   {
     path: 'teacher/:id',
     component: TeachViewComponent,
@@ -95,11 +95,15 @@ export const routes: Routes = [
     component: ProductsComponent,
   },
   {
-    path:'users',
-    component:UserListComponent
+    path: 'users',
+    component: UserListComponent,
   },
   {
-    path:'**',
-    component: NotFoundComponent
-}
+    path: 'user/view/:id',
+    component: ViewUserComponent,
+  },
+  {
+    path: '**',
+    component: NotFoundComponent,
+  },
 ];
