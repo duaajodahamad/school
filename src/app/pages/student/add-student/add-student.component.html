@@ -9,15 +9,13 @@
       <input
         matInput
         type="number"
-        formControlName="stId"
-        id="stId"
+        formControlName="id"
+        id="id"
         [readonly]="editMode"
         required
       />
       <mat-error
-        *ngIf="
-          studentForm.get('stId')!.invalid && studentForm.get('stId')!.touched
-        "
+        *ngIf="studentForm.get('id')!.invalid && studentForm.get('id')!.touched"
       >
         Student ID is required.
       </mat-error>
@@ -25,10 +23,10 @@
 
     <mat-form-field appearance="outline" class="form-group half-width">
       <mat-label>Name</mat-label>
-      <input matInput type="text" formControlName="Name" id="name" required />
+      <input matInput type="text" formControlName="name" id="name" required />
       <mat-error
         *ngIf="
-          studentForm.get('Name')!.invalid && studentForm.get('Name')!.touched
+          studentForm.get('name')!.invalid && studentForm.get('name')!.touched
         "
       >
         Name is required and must be at least 3 characters long.
@@ -57,7 +55,17 @@
 
     <mat-form-field appearance="outline" class="form-group half-width">
       <mat-label>Phone</mat-label>
-      <input matInput type="text" formControlName="phone" id="phone" />
+      <input
+        matInput
+        type="text"
+        formControlName="phoneNumber"
+        id="phoneNumber"
+      />
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="form-group half-width">
+      <mat-label>City</mat-label>
+      <input matInput type="text" formControlName="city" id="city" />
     </mat-form-field>
   </div>
 

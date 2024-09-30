@@ -1,0 +1,39 @@
+<div class="phone-form-container">
+  <form [formGroup]="phoneForm" class="phone-form">
+    <mat-form-field appearance="outline">
+      <mat-label>Phone Number</mat-label>
+      <input matInput formControlName="phoneNumber" />
+      <mat-error *ngIf="phoneForm.get('phoneNumber')?.hasError('required')">
+        Phone number is required.
+      </mat-error>
+      <mat-error *ngIf="phoneForm.get('phoneNumber')?.hasError('minlength')">
+        Phone number must be at least 9 characters long.
+      </mat-error>
+      <mat-error
+        *ngIf="phoneForm.get('phoneNumber')?.hasError('phoneNotFound')"
+      >
+        Phone number not found.
+      </mat-error>
+    </mat-form-field>
+
+    <button
+      mat-raised-button
+      color="primary"
+      (click)="navigateTo('studentList')"
+    >
+      Back
+    </button>
+  </form>
+
+  <div *ngIf="studentInfo" class="student-info">
+    <h3>Student Info:</h3>
+    <p><strong>Name:</strong> {{ studentInfo.name }}</p>
+    <p><strong>Email:</strong> {{ studentInfo.email }}</p>
+    <p><strong>Phone:</strong> {{ studentInfo.phoneNumber }}</p>
+    <p><strong>City:</strong> {{ studentInfo.city }}</p>
+  </div>
+
+  <div *ngIf="phoneNotFound" class="not-found-message">
+    <p>No student found with this phone number.</p>
+  </div>
+</div>

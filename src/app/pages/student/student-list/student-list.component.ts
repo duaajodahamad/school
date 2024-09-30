@@ -6,10 +6,9 @@ import {
   OnInit,
   SimpleChanges,
 } from '@angular/core';
-import { StudnetModel } from '../../../Models/student.modle';
+import { StudnetBackEndModel } from '../../../Models/student.modle';
 import { StudentdataService } from '../../../services/studentdata.service';
 import { Router } from '@angular/router';
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
@@ -19,6 +18,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSortModule } from '@angular/material/sort';
 import { MatPaginatorModule } from '@angular/material/paginator';
+import { StudentApiService } from '../../../services/student-services/student-api.service';
 
 @Component({
   selector: 'app-student-list',
@@ -40,41 +40,28 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 export class StudentListComponent implements OnInit, OnChanges, OnDestroy {
   title: string = 'Student List';
   sudentSoucrReference: any;
-  @Input() students: StudnetModel[] = [];
+  @Input() students: StudnetBackEndModel[] = [];
+  filteredStudents: StudnetBackEndModel[] = [];
   test!: string;
   displayedColumns: string[] = ['stId', 'Name', 'email', 'phone', 'actions'];
-  dataSource = new MatTableDataSource<StudnetModel>(this.students);
+  dataSource = new MatTableDataSource<StudnetBackEndModel>(
+    this.filteredStudents
+  );
 
   constructor(
     public studentservice: StudentdataService,
-    private router: Router
+    private router: Router,
+    private studentApiService: StudentApiService
   ) {}
 
-  ngOnDestroy(): void {
-    this.sudentSoucrReference.unsubscribe();
-  }
+  ngOnDestroy(): void {}
 
   ngOnInit() {
-    // this.sudentSoucrReference = this.studentservice.students.subscribe((c) => {
-    //   this.students = c;
-    //   this.dataSource.data = c;
-    // });
-
-    this.studentservice.getStudent().subscribe((c:any)=>{
-      console.log(c);
-      for (let index = 0; index < (<any[]>c).length; index++) {
-        let stuendt:StudnetModel = {
-          stId: c[index].id,
-          Name: c[index].name,
-          email: c[index].name + '@gmail.com',
-          phone: c[index].dob,
-        };
-        this.students.push(stuendt);
-        this.dataSource.data.push(stuendt);
-      } 
-      console.log(this.students);
+    this.studentApiService.getStudents().subscribe((c) => {
+      this.students = c;
+      this.filteredStudents = c;
+      this.dataSource.data = this.filteredStudents;
     });
-
   }
 
   navigateTo(route: string, id?: number) {
@@ -86,12 +73,27 @@ export class StudentListComponent implements OnInit, OnChanges, OnDestroy {
   }
 
   deleteStudent(id: number) {
-    this.studentservice.deleteStudent(id);
+    this.studentApiService.deleteStudent(id).subscribe((c) => {
+      this.students = this.students.filter((x) => x.id !== id);
+      this.filteredStudents = this.students;
+      this.dataSource.data = this.filteredStudents;
+    });
   }
 
   ngOnChanges(changes: SimpleChanges): void {}
 
   search() {
-    this.studentservice.search(this.test);
+    if (this.test && this.test.trim()) {
+      this.filteredStudents = this.students.filter(
+        (student) =>
+          student.name.toLowerCase().includes(this.test.toLowerCase()) ||
+          student.email.toLowerCase().includes(this.test.toLowerCase()) ||
+          student.phoneNumber.includes(this.test)
+      );
+    } else {
+      this.filteredStudents = this.students;
+    }
+
+    this.dataSource.data = this.filteredStudents;
   }
 }

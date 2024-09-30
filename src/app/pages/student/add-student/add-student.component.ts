@@ -1,4 +1,4 @@
-import { Component, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import {
   FormBuilder,
@@ -6,13 +6,12 @@ import {
   Validators,
   ReactiveFormsModule,
 } from '@angular/forms';
-import { StudentdataService } from '../../../services/studentdata.service';
+import { StudentApiService } from './../../../services/student-services/student-api.service';
 import { CommonModule } from '@angular/common';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
-import { MatError } from '@angular/material/form-field';
 
 @Component({
   selector: 'app-add-student',
@@ -36,15 +35,16 @@ export class AddStudentComponent implements OnInit {
     private fb: FormBuilder,
     private router: Router,
     private route: ActivatedRoute,
-    public studentService: StudentdataService
+    private studentApiService: StudentApiService
   ) {}
 
   ngOnInit(): void {
     this.studentForm = this.fb.group({
-      stId: [0, [Validators.required]],
-      Name: ['', [Validators.required, Validators.minLength(3)]],
+      id: [0, [Validators.required]],
+      name: ['', [Validators.required, Validators.minLength(3)]],
       email: ['', [Validators.required, Validators.email]],
-      phone: [''],
+      phoneNumber: [''],
+      city: [''],
     });
 
     this.route.paramMap.subscribe((params) => {
@@ -57,26 +57,32 @@ export class AddStudentComponent implements OnInit {
   }
 
   getStudentById(id: number) {
-    const student = this.studentService.sourceStudentModel.find(
-      (s) => s.stId === id
-    );
-    if (student) {
+    // Use the API service to fetch student details by ID
+    this.studentApiService.getStudentById(id).subscribe((student) => {
       this.studentForm.patchValue({
-        stId: student.stId,
-        Name: student.Name,
+        id: student.id,
+        name: student.name,
         email: student.email,
-        phone: student.phone,
+        phoneNumber: student.phoneNumber,
+        city: student.city,
       });
-    }
+    });
   }
 
   Onsubmit() {
     if (this.editMode) {
-      this.studentService.updateStudent(this.studentForm.value);
+      this.studentApiService
+        .updateStudent(this.studentForm.value)
+        .subscribe(() => {
+          this.router.navigate(['studentList']);
+        });
     } else {
-      this.studentService.update(this.studentForm.value);
+      this.studentApiService
+        .addStudent(this.studentForm.value)
+        .subscribe(() => {
+          this.router.navigate(['studentList']);
+        });
     }
-    this.router.navigate(['studentList']);
   }
 
   navigateTo(route: string) {

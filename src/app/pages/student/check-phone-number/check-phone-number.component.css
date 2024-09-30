@@ -1,0 +1,51 @@
+/* Ensure the body takes the full height of the viewport */
+html,
+body {
+  height: 100%;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Center the form container vertically and horizontally */
+.phone-form-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+}
+
+/* Center the form and other content */
+.phone-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-width: 300px;
+  max-width: 400px;
+  width: 100%;
+}
+
+/* Set the form field width and center the input field */
+mat-form-field {
+  width: 100%;
+}
+
+/* Style for the Back button */
+button {
+  margin-top: 20px;
+}
+
+/* Center student information and not found message */
+.student-info,
+.not-found-message {
+  text-align: center;
+  margin-top: 20px;
+}
+
+h3 {
+  margin-bottom: 10px;
+}
