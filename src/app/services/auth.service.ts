@@ -15,9 +15,10 @@ export class AuthService {
 
   //to get teh login user information
   getUserInfo() {
+    // //, {
+    //   headers: { "Authorization": "Bearer  "+token },
+    // }
    let token= localStorage.getItem('token')
-    return this.http.get('https://api.escuelajs.co/api/v1/auth/profile', {
-      headers: { "Authorization": "Bearer  "+token },
-    });
+    return this.http.get('https://api.escuelajs.co/api/v1/auth/profile');
   }
 }
