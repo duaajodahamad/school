@@ -55,10 +55,26 @@ export class StudentListComponent implements OnInit, OnChanges, OnDestroy {
   }
 
   ngOnInit() {
-    this.sudentSoucrReference = this.studentservice.students.subscribe((c) => {
-      this.students = c;
-      this.dataSource.data = c;
+    // this.sudentSoucrReference = this.studentservice.students.subscribe((c) => {
+    //   this.students = c;
+    //   this.dataSource.data = c;
+    // });
+
+    this.studentservice.getStudent().subscribe((c:any)=>{
+      console.log(c);
+      for (let index = 0; index < (<any[]>c).length; index++) {
+        let stuendt:StudnetModel = {
+          stId: c[index].id,
+          Name: c[index].name,
+          email: c[index].name + '@gmail.com',
+          phone: c[index].dob,
+        };
+        this.students.push(stuendt);
+        this.dataSource.data.push(stuendt);
+      } 
+      console.log(this.students);
     });
+
   }
 
   navigateTo(route: string, id?: number) {

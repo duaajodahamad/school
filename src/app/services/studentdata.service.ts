@@ -1,6 +1,7 @@
+import { HttpClient } from '@angular/common/http';
 import { StudnetModel } from './../Models/student.modle';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -18,8 +19,13 @@ export class StudentdataService {
     StudnetModel[]
   >([]);
   satasource = this.students.asObservable();
-  constructor() {
+  constructor(private http: HttpClient) {
+    this.getStudent();
     this.students.next(this.sourceStudentModel);
+  }
+
+  getStudent()  {
+    return this.http.get('https://localhost:7194/api/Setting/Get10Student');
   }
 
   update(st: StudnetModel) {
@@ -43,14 +49,15 @@ export class StudentdataService {
     }
   }
 
-  search(input:string){
-
-    let newValues=this.sourceStudentModel.filter(c=>c.Name.includes(input) 
-    || c.email.includes(input) 
-    || c.stId.toString().includes(input) 
-    || c.phone.includes(input));
+  search(input: string) {
+    let newValues = this.sourceStudentModel.filter(
+      (c) =>
+        c.Name.includes(input) ||
+        c.email.includes(input) ||
+        c.stId.toString().includes(input) ||
+        c.phone.includes(input)
+    );
 
     this.students.next(newValues);
   }
-
 }

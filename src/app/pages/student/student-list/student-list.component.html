@@ -15,6 +15,27 @@
   </mat-form-field>
 </div>
 
+
+<table>
+  <th>
+    student id
+  </th>
+  <th>
+      Name
+  </th>
+  <th>
+      email
+  </th>
+  <th>phobe</th>
+  <tr *ngFor="let st of students" >
+<td>{{st.stId }}</td>
+<td>{{st.Name }}</td>
+<td>{{st.email }}</td>
+<td>{{st.phone }}</td>
+  </tr>
+</table>
+
+
 <table mat-table [dataSource]="students" class="mat-elevation-z8">
   <ng-container matColumnDef="stId">
     <th mat-header-cell *matHeaderCellDef>Id</th>
@@ -74,3 +95,4 @@
   <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
   <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
 </table>
+
